@@ -58,6 +58,8 @@ public class HashTable<K,V> implements IHashTable<K,V> {
         }
         if(previous != null) {
             previous.setNext(next);
+        } else {
+            nodes[index] = next;
         }
 
         if(previous == null && next == null) {
