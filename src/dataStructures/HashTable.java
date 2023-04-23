@@ -30,7 +30,7 @@ public class HashTable<K,V> implements IHashTable<K,V> {
 
         HNode<K,V> current = nodes[index];
         while(current != null) {
-            if(current.getKey() == key) return current.getValue();
+            if(current.getKey().equals(key)) return current.getValue();
             current = current.getPrevious();
         }
         return null;
@@ -43,7 +43,7 @@ public class HashTable<K,V> implements IHashTable<K,V> {
 
         HNode<K,V> current = nodes[index];
         while(current != null) {
-            if(current.getKey() == key) {
+            if(current.getKey().equals(key)) {
                 target = current;
                 break;
             }

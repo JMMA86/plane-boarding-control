@@ -100,14 +100,14 @@ public class HashTableTest {
     @Test
     void searchElementNonEmptyList() {
         // art
-        Reservation newReservation = new Reservation(generateRandomId(), "Chris", generateRandomCriteria(), rnd.nextInt(), (char)rnd.nextInt() );
+        Reservation newReservation = new Reservation("AAAAAA", "Chris", generateRandomCriteria(), rnd.nextInt(), (char)rnd.nextInt() );
         try {
             reservations.insert(newReservation.getId(), newReservation);
         } catch (DuplicatedKeyException e) {
             e.getStackTrace();
         }
         // assert
-        assertEquals(reservations.search(newReservation.getId()), newReservation);
+        assertEquals(reservations.search("AAAAAA"), newReservation);
     }
 
     @Test
