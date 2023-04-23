@@ -54,4 +54,14 @@ public class Reservation {
     public void setColumnChar(char columnChar) {
         this.columnChar = columnChar;
     }
+
+    @Override
+    public String toString() {
+        String id = String.format("%nReservation: %s%n - name: %s%n - seat: %d%c", this.id, this.passengerName, this.rowNumber, this.columnChar);
+        for(int i=0; i<priority.length; i++) {
+            id += String.format("%n - %s: %s", PriorityCriteria.values()[i].toString().toLowerCase().replaceAll("_", " "), ( priority[i] ? "yes" : "no") );
+        }
+        return id;
+    }
+
 }
