@@ -15,6 +15,10 @@ public class Controller {
         this.rnd = new Random();
     }
 
+    /**
+     * This method reads data from a text file called located in data folder, parses its information and registers a new reservation based on that information.
+     * @throws NumberFormatException if the input file contains a non-numeric character where a number is expected
+     */
     public void readDataFromFile() {
         File file = new File("data/sampleText.txt");
         String line;
@@ -34,6 +38,13 @@ public class Controller {
         }
     }
 
+    /**
+     * This method extracts the attributes of the reservation from the plain text file and returns a new Reservation with that information.
+     * @param line The initial text line, it is separated by ' | ' character
+     * @return newReservation The new reservation created from the text line
+     * @throws NumberFormatException if the rowNumber is not a valid integer
+     * @throws DuplicatedKeyException if the generated id for the reservation already exists in the reservations hash table
+     */
     private Reservation parseLineIntoReservation(String line) throws NumberFormatException, DuplicatedKeyException {
         String[] info = line.split(" \\| ");
         String name = info[0];
@@ -46,6 +57,10 @@ public class Controller {
         return new Reservation(generateRandomId(), name, priority, rowNumber, columnChar);
     }
 
+    /**
+     * This method generates random length 6 String IDs ensuring that they are not repeated in the hash table.
+     * @return id A String representing the random ID
+     */
     private String generateRandomId() {
         char[] charId = new char[6];
         for(int i=0; i<charId.length; i++) {
