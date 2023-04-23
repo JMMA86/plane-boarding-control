@@ -39,6 +39,16 @@ public class Controller {
     }
 
     /**
+     * This method search a reservation by its id and shows the reservation information if found.
+     * @param id the unique ID for the reservation
+     * @return reservationString The String representation of the reservation
+     */
+    public String searchReservationById(String id) {
+        Reservation foundReservation = reservations.search(id);
+        return (foundReservation != null) ? foundReservation.toString() : "\nReservation not found";
+    }
+
+    /**
      * This method extracts the attributes of the reservation from the plain text file and returns a new Reservation with that information.
      * @param line The initial text line, it is separated by ' | ' character
      * @return newReservation The new reservation created from the text line
