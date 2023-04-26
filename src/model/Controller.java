@@ -1,6 +1,7 @@
 package model;
 
 import dataStructures.HashTable;
+import dataStructures.PriorityQueue;
 import exception.DuplicatedKeyException;
 
 import java.io.*;
@@ -11,8 +12,10 @@ public class Controller {
 
     private Random rnd;
     private HashTable<String, Reservation> reservations;
+    private PriorityQueue<Integer, Reservation> entryOrder;
     public Controller() {
         this.reservations = new HashTable<>();
+        this.entryOrder = new PriorityQueue<>();
         this.rnd = new Random();
     }
     /**
@@ -66,5 +69,9 @@ public class Controller {
             priority[i] = Boolean.parseBoolean(info[i+4]);
         }
         return new Reservation(id, name, priority, rowNumber, columnChar);
+    }
+
+    public void setPassengerEnterPriority() {
+        
     }
 }

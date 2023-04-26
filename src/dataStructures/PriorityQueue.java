@@ -13,27 +13,12 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
         this.array = new ArrayList<>();
     }
 
-
-    /**
-     * @param key The key of the new element
-     * @param element The element to be added
-     * <p>
-     * This function puts a new element to the end of the heap
-     * a buildMaxHeap or buildMinHeap must be performed after to work as
-     * a heap
-     */
-    public void pushBack(K key, V element) {
-        PQNode<K, V> newPQNode = new PQNode<>(key, element);
-        array.add(newPQNode);
-        heapSize = array.size();
-    }
-
     /**
      * @param i The ith element to be heapified in the array
      *
      * This function organize the nodes in the heap taking the bigger keys as the roots
      */
-    public void maxHeapify(int i) {
+    private void maxHeapify(int i) {
         int l = left(i);
         int r = right(i);
         int largest = i;
@@ -57,7 +42,7 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
      *
      * This function organize the nodes in the heap taking the smallest keys as the roots
      */
-    public void minHeapify(int i) {
+    private void minHeapify(int i) {
         int l = left(i);
         int r = right(i);
         int shortest = i;
@@ -182,9 +167,10 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
      * This function expands the maximum key
      */
     @Override
-    public void maxHeapInsert(K key) throws KeyIsSmallerException {
-        heapSize = heapSize + 1;
-        array.get(heapSize).setKey(array.get(0).getKey());
+    public void maxHeapInsert(K key, V element) throws KeyIsSmallerException {
+        heapSize++;
+        PQNode<K, V> node = new PQNode<>(key, element);
+        array.add(node);
         heapIncreaseKey(heapSize, key);
     }
 
@@ -221,9 +207,10 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
     }
 
     @Override
-    public void minHeapInsert(K key) throws KeyIsBiggerException {
+    public void minHeapInsert(K key, V element) throws KeyIsBiggerException {
         heapSize = heapSize + 1;
-        array.get(heapSize).setKey(array.get(0).getKey());
+        PQNode<K, V> node = new PQNode<>(key, element);
+        array.add(node);
         heapDecreaseKey(heapSize, key);
     }
 
@@ -249,14 +236,6 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
 
     private int right(int i) {
         return 2 * i + 1;
-    }
-
-    public ArrayList<PQNode<K, V>> getArray() {
-        return array;
-    }
-
-    public void setArray(ArrayList<PQNode<K, V>> array) {
-        this.array = array;
     }
 
     @Override
