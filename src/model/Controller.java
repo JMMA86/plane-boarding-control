@@ -12,10 +12,12 @@ public class Controller {
 
     private Random rnd;
     private HashTable<String, Reservation> reservations;
-    private PriorityQueue<Integer, Reservation> entryOrder;
+    private final PriorityQueue<Integer, Reservation> entryOrder;
+    private final PriorityQueue<Integer, Reservation> exitOrder;
     public Controller() {
         this.reservations = new HashTable<>();
         this.entryOrder = new PriorityQueue<>();
+        this.exitOrder = new PriorityQueue<>();
         this.rnd = new Random();
     }
     /**
@@ -32,7 +34,7 @@ public class Controller {
                 try {
                     Reservation newReservation = parseLineIntoReservation(line);
                     reservations.insert(newReservation.getId(), newReservation);
-                    entryOrder.maxHeapInsert(calculatePriority(newReservation), newReservation);
+                    entryOrder.maxHeapInsert(calculateEntryPriority(newReservation), newReservation);
                 } catch(NumberFormatException | DuplicatedKeyException | KeyIsSmallerException e) {
                     e.getStackTrace();
                 }
@@ -83,7 +85,7 @@ public class Controller {
      * @return The sum of all the trues in the boolean array calculated as 2 to the power
      *         of the position of that element.
      */
-    public int calculatePriority(Reservation reservation) {
+    private int calculateEntryPriority(Reservation reservation) {
         int ans = 0;
         if (reservation.getPriority()[reservation.getPriority().length - 1]) {
             for (int i = reservation.getPriority().length - 1; i >= 0; i--) {
@@ -95,6 +97,10 @@ public class Controller {
             ans = 1;
         }
         return ans;
+    }
+
+    private int calculateExitPriority(Reservation reservation) {
+        return 0;
     }
 
     public PriorityQueue<Integer, Reservation> getEntryOrder() {
