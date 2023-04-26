@@ -18,7 +18,7 @@ public class Main {
     }
 
     private void showMenu() {
-        System.out.println("Hello world");
+        controller.readDataFromFile();
     }
 
 

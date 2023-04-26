@@ -14,14 +14,5 @@ public interface IPriorityQueue<K extends Comparable<K>, V> {
     void heapIncreaseKey(int i, K key) throws KeyIsSmallerException;
 
     void maxHeapInsert(K key, V value) throws KeyIsSmallerException;
-
-    // Para colas de prioridad mínimas
-    V heapMinimun();
-
-    V heapExtractMin() throws HeapUnderFlowException;
-
-    void heapDecreaseKey(int i, K key) throws KeyIsBiggerException;
-
-    void minHeapInsert(K key, V value) throws KeyIsBiggerException;
 }
 

@@ -83,7 +83,6 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
         }
     }
 
-
     /**
      * @param reversed Changes the order of the heap to descending
      *
@@ -171,47 +170,7 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
         heapSize++;
         PQNode<K, V> node = new PQNode<>(key, element);
         array.add(node);
-        heapIncreaseKey(heapSize, key);
-    }
-
-    @Override
-    public V heapMinimun() {
-        return array.get(0).getValue();
-    }
-
-    @Override
-    public V heapExtractMin() throws HeapUnderFlowException {
-        if (heapSize < 1) {
-            throw new HeapUnderFlowException("Priority queue underflow");
-        }
-
-        PQNode<K, V> min = array.get(0);
-        array.set(0, array.get(heapSize - 1));
-        heapSize--;
-        minHeapify(0);
-        return min.getValue();
-    }
-
-    @Override
-    public void heapDecreaseKey(int i, K key) throws KeyIsBiggerException {
-        if (isBigger(key, array.get(i).getKey())) {
-            throw new KeyIsBiggerException("The key given is bigger than the actual key");
-        }
-
-        array.get(array.size() - 1).setKey(key);
-
-        while (i > 0 && isBigger(array.get(i / 2).getKey(), array.get(i).getKey())) {
-            exchange(array, i, i / 2);
-            i = i / 2;
-        }
-    }
-
-    @Override
-    public void minHeapInsert(K key, V element) throws KeyIsBiggerException {
-        heapSize = heapSize + 1;
-        PQNode<K, V> node = new PQNode<>(key, element);
-        array.add(node);
-        heapDecreaseKey(heapSize, key);
+        heapIncreaseKey(array.size() - 1, key);
     }
 
     private void exchange(ArrayList<PQNode<K, V>> A, int index1, int index2) {

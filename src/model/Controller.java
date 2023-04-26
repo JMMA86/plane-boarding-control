@@ -3,9 +3,9 @@ package model;
 import dataStructures.HashTable;
 import dataStructures.PriorityQueue;
 import exception.DuplicatedKeyException;
+import exception.KeyIsSmallerException;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Controller {
@@ -32,7 +32,8 @@ public class Controller {
                 try {
                     Reservation newReservation = parseLineIntoReservation(line);
                     reservations.insert(newReservation.getId(), newReservation);
-                } catch(NumberFormatException | DuplicatedKeyException e) {
+                    entryOrder.maxHeapInsert(calculatePriority(newReservation), newReservation);
+                } catch(NumberFormatException | DuplicatedKeyException | KeyIsSmallerException e) {
                     e.getStackTrace();
                 }
             }
@@ -71,7 +72,28 @@ public class Controller {
         return new Reservation(id, name, priority, rowNumber, columnChar);
     }
 
-    public void setPassengerEnterPriority() {
-        
+
+    /**
+     * This function generates the priority for a reservation based on a boolean array
+     * where the first element represents a reservation for the first class. The sum of
+     * all the true elements in the array will return the entrance priority for that
+     * reservation.
+     *
+     * @param reservation the reservation recently added to the queue
+     * @return The sum of all the trues in the boolean array calculated as 2 to the power
+     *         of the position of that element.
+     */
+    public int calculatePriority(Reservation reservation) {
+        int ans = 0;
+        if (reservation.getPriority()[reservation.getPriority().length - 1]) {
+            for (int i = reservation.getPriority().length - 1; i >= 0; i--) {
+                if (reservation.getPriority()[i]) {
+                    ans += Math.pow(2, i);
+                }
+            }
+        } else {
+            ans = 1;
+        }
+        return ans;
     }
 }
