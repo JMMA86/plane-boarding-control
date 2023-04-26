@@ -96,4 +96,8 @@ public class Controller {
         }
         return ans;
     }
+
+    public PriorityQueue<Integer, Reservation> getEntryOrder() {
+        return entryOrder;
+    }
 }

@@ -7,14 +7,14 @@ import exception.KeyIsSmallerException;
 import java.util.ArrayList;
 
 public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue<K, V> {
-    private ArrayList<PQNode<K, V>> array;
+    private final ArrayList<PQNode<K, V>> array;
     private int heapSize;
     public PriorityQueue() {
         this.array = new ArrayList<>();
     }
 
     /**
-     * @param i The ith element to be heapified in the array
+     * @param i The ith element to be heapify in the array
      *
      * This function organize the nodes in the heap taking the bigger keys as the roots
      */
@@ -38,7 +38,7 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
     }
 
     /**
-     * @param i The ith element to be heapified in the array
+     * @param i The ith element to be heapify in the array
      *
      * This function organize the nodes in the heap taking the smallest keys as the roots
      */
@@ -106,7 +106,6 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
         }
     }
 
-
     /**
      * @return The biggest element in the array
      *
@@ -117,12 +116,11 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
         return array.get(0).getValue();
     }
 
-
     /**
      * @return The biggest element in the heap
      * @throws HeapUnderFlowException When the heap is empty
      *
-     * This function extracts the biggest element in a maxHipified heap, otherwise will not work
+     * This function extracts the biggest element in a maxHipyfied heap, otherwise will not work
      */
     @Override
     public V heapExtractMax() throws HeapUnderFlowException {
@@ -136,7 +134,6 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
         return max.getValue();
     }
 
-
     /**
      * @param i The element to increase its priority
      * @param key The new key of the element
@@ -147,7 +144,7 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
     @Override
     public void heapIncreaseKey(int i, K key) throws KeyIsSmallerException {
         if (isBigger(array.get(i).getKey(), key)) {
-            throw new KeyIsSmallerException("The key given is smaller than the actual key");
+            throw new KeyIsSmallerException("The given key is smaller than the actual key");
         }
 
         array.get(i).setKey(key);
@@ -157,7 +154,6 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
             i = i / 2;
         }
     }
-
 
     /**
      * @param key The new maximum key in the heap

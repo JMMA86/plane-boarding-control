@@ -1,4 +1,5 @@
 package ui;
+import exception.HeapUnderFlowException;
 import model.Controller;
 
 import java.util.Scanner;
@@ -19,6 +20,14 @@ public class Main {
 
     private void showMenu() {
         controller.readDataFromFile();
+        try {
+            System.out.println(controller.getEntryOrder().heapExtractMax().getPassengerName());
+            System.out.println(controller.getEntryOrder().heapExtractMax().getPassengerName());
+            System.out.println(controller.getEntryOrder().heapExtractMax().getPassengerName());
+            System.out.println(controller.getEntryOrder().heapExtractMax().getPassengerName());
+        } catch (HeapUnderFlowException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
