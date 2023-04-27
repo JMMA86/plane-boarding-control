@@ -11,6 +11,7 @@ import java.util.Random;
 public class Controller {
     private Random rnd;
     private static final int ROWS = 30;
+    private static final int COLUMNS = 6;
     private HashTable<String, Reservation> reservations;
     private final PriorityQueue<Integer, Reservation> entryOrder;
     private final PriorityQueue<Integer, Reservation> exitOrder;
@@ -20,6 +21,7 @@ public class Controller {
         this.exitOrder = new PriorityQueue<>();
         this.rnd = new Random();
     }
+
     /**
      * This method reads data from a text file called located in data folder, parses its information and registers a new reservation based on that information.
      * @throws NumberFormatException if the input file contains a non-numeric character where a number is expected
@@ -110,16 +112,11 @@ public class Controller {
     private int calculateExitPriority(Reservation reservation) {
         int ans = 0;
         switch (reservation.getColumnChar()) {
-            case ('A'), ('F') -> ans = (ROWS - reservation.getRowNumber()) * 3 - 3;
-            case ('B'), ('E') -> ans = (ROWS - reservation.getRowNumber()) * 3 - 2;
-            case ('C'), ('D') -> ans = (ROWS - reservation.getRowNumber()) * 3 - 1 ;
+            case ('A'), ('F') -> ans = (ROWS - reservation.getRowNumber()) * (COLUMNS / 2) - 3;
+            case ('B'), ('E') -> ans = (ROWS - reservation.getRowNumber()) * (COLUMNS / 2) - 2;
+            case ('C'), ('D') -> ans = (ROWS - reservation.getRowNumber()) * (COLUMNS / 2) - 1;
         }
-        System.out.println("Name: "  + reservation.getPassengerName() + " Prio: " + ans);
         return ans;
-    }
-
-    public PriorityQueue<Integer, Reservation> getEntryOrder() {
-        return entryOrder;
     }
 
     public PriorityQueue<Integer, Reservation> getExitOrder() {
