@@ -112,8 +112,8 @@ public class Controller {
         int ans = 0;
         switch (reservation.getColumnChar()) {
             case ('A'), ('F') -> ans = (ROWS - reservation.getRowNumber());
-            case ('B'), ('E') -> ans = (ROWS - reservation.getRowNumber()) * 2;
-            case ('C'), ('D') -> ans = (ROWS - reservation.getRowNumber()) * 3;
+            case ('B'), ('E') -> ans = (ROWS - reservation.getRowNumber()) + 3;
+            case ('C'), ('D') -> ans = (ROWS - reservation.getRowNumber()) + 5;
         }
         return ans;
     }

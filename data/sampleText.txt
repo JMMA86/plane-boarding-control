@@ -1,4 +1,5 @@
 DFTWRD | Cristian Botina | 4 | B | True | False | False | False | True
+DFFQAS | Eduardo Botina | 4 | A | True | True | True | True | True
 SDERFS | Mario Martinez | 1 | C | False | False | False | False | True
 SERDSE | Oscar Gomez | 5 | D | False | True | False | False | False
 HHADDE | Mario Mendez | 3 | A | True | False | True | True | True

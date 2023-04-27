@@ -23,11 +23,11 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
         int r = right(i);
         int largest = i;
 
-        if (l <= heapSize && isBigger(array.get(l).getKey(), array.get(i).getKey())) {
+        if (l <= array.size() - 1 && isBigger(array.get(l).getKey(), array.get(i).getKey())) {
             largest = l;
         }
 
-        if (r <= heapSize && isBigger(array.get(r).getKey(), array.get(largest).getKey())) {
+        if (r <= array.size() - 1 && isBigger(array.get(r).getKey(), array.get(largest).getKey())) {
             largest = r;
         }
 
@@ -124,11 +124,10 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
      */
     @Override
     public V heapExtractMax() throws HeapUnderFlowException {
-        if (heapSize < 1) {
+        if (array.size() < 1) {
             throw new HeapUnderFlowException("PriorityQueue underflow");
         }
-        PQNode<K, V> max = array.get(0);
-        array.set(0, array.get(heapSize - 1));
+        PQNode<K, V> max = array.remove(0);
         heapSize--;
         maxHeapify(0);
         return max.getValue();
@@ -191,6 +190,10 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
 
     private int right(int i) {
         return 2 * i + 1;
+    }
+
+    public ArrayList<PQNode<K, V>> getArray() {
+        return array;
     }
 
     @Override
