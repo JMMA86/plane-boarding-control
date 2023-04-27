@@ -21,10 +21,12 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
     private void maxHeapify(int i) {
         int l = left(i);
         int r = right(i);
-        int largest = i;
+        int largest;
 
         if (l <= array.size() - 1 && isBigger(array.get(l).getKey(), array.get(i).getKey())) {
             largest = l;
+        } else {
+            largest = i;
         }
 
         if (r <= array.size() - 1 && isBigger(array.get(r).getKey(), array.get(largest).getKey())) {
