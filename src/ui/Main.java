@@ -26,6 +26,8 @@ public class Main {
             System.out.println(controller.getExitOrder().heapExtractMax().getPassengerName());
             System.out.println(controller.getExitOrder().heapExtractMax().getPassengerName());
             System.out.println(controller.getExitOrder().heapExtractMax().getPassengerName());
+            System.out.println(controller.getExitOrder().heapExtractMax().getPassengerName());
+            System.out.println(controller.getExitOrder().heapExtractMax().getPassengerName());
         } catch (HeapUnderFlowException e) {
             throw new RuntimeException(e);
         }

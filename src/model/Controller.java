@@ -75,7 +75,6 @@ public class Controller {
         return new Reservation(id, name, priority, rowNumber, columnChar);
     }
 
-
     /**
      * This function generates the priority for a reservation based on a boolean array
      * where the first element represents a reservation for the first class. The sum of
@@ -111,9 +110,9 @@ public class Controller {
     private int calculateExitPriority(Reservation reservation) {
         int ans = 0;
         switch (reservation.getColumnChar()) {
-            case ('A'), ('F') -> ans = (ROWS - reservation.getRowNumber());
-            case ('B'), ('E') -> ans = (ROWS - reservation.getRowNumber()) + 3;
-            case ('C'), ('D') -> ans = (ROWS - reservation.getRowNumber()) + 5;
+            case ('A'), ('F') -> ans = (ROWS - reservation.getRowNumber()) - 1;
+            case ('B'), ('E') -> ans = (ROWS - reservation.getRowNumber()) - 2;
+            case ('C'), ('D') -> ans = (ROWS - reservation.getRowNumber()) - 3;
         }
         return ans;
     }
