@@ -21,10 +21,10 @@ public class Main {
     private void showMenu() {
         controller.readDataFromFile();
         try {
-            System.out.println(controller.getEntryOrder().heapExtractMax().getPassengerName());
-            System.out.println(controller.getEntryOrder().heapExtractMax().getPassengerName());
-            System.out.println(controller.getEntryOrder().heapExtractMax().getPassengerName());
-            System.out.println(controller.getEntryOrder().heapExtractMax().getPassengerName());
+            System.out.println(controller.getExitOrder().heapExtractMax().getPassengerName());
+            System.out.println(controller.getExitOrder().heapExtractMax().getPassengerName());
+            System.out.println(controller.getExitOrder().heapExtractMax().getPassengerName());
+            System.out.println(controller.getExitOrder().heapExtractMax().getPassengerName());
         } catch (HeapUnderFlowException e) {
             throw new RuntimeException(e);
         }

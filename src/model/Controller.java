@@ -9,8 +9,8 @@ import java.io.*;
 import java.util.Random;
 
 public class Controller {
-
     private Random rnd;
+    private static final int ROWS = 30;
     private HashTable<String, Reservation> reservations;
     private final PriorityQueue<Integer, Reservation> entryOrder;
     private final PriorityQueue<Integer, Reservation> exitOrder;
@@ -35,6 +35,7 @@ public class Controller {
                     Reservation newReservation = parseLineIntoReservation(line);
                     reservations.insert(newReservation.getId(), newReservation);
                     entryOrder.maxHeapInsert(calculateEntryPriority(newReservation), newReservation);
+                    exitOrder.maxHeapInsert(calculateExitPriority(newReservation), newReservation);
                 } catch(NumberFormatException | DuplicatedKeyException | KeyIsSmallerException e) {
                     e.getStackTrace();
                 }
@@ -99,11 +100,29 @@ public class Controller {
         return ans;
     }
 
+    /**
+     * This function calculates the exit priority by the column of the passenger
+     * the nearest he is to the hall and to the exit, the fastest he will leave the
+     * airplane.
+     *
+     * @param reservation The reservation to be added
+     * @return An int representing his order to leave the airplane
+     */
     private int calculateExitPriority(Reservation reservation) {
-        return 0;
+        int ans = 0;
+        switch (reservation.getColumnChar()) {
+            case ('A'), ('F') -> ans = (ROWS - reservation.getRowNumber());
+            case ('B'), ('E') -> ans = (ROWS - reservation.getRowNumber()) * 2;
+            case ('C'), ('D') -> ans = (ROWS - reservation.getRowNumber()) * 3;
+        }
+        return ans;
     }
 
     public PriorityQueue<Integer, Reservation> getEntryOrder() {
         return entryOrder;
+    }
+
+    public PriorityQueue<Integer, Reservation> getExitOrder() {
+        return exitOrder;
     }
 }
