@@ -110,10 +110,11 @@ public class Controller {
     private int calculateExitPriority(Reservation reservation) {
         int ans = 0;
         switch (reservation.getColumnChar()) {
-            case ('A'), ('F') -> ans = (ROWS - reservation.getRowNumber()) - 1;
-            case ('B'), ('E') -> ans = (ROWS - reservation.getRowNumber()) - 2;
-            case ('C'), ('D') -> ans = (ROWS - reservation.getRowNumber()) - 3;
+            case ('A'), ('F') -> ans = (ROWS - reservation.getRowNumber()) + 1;
+            case ('B'), ('E') -> ans = (ROWS - reservation.getRowNumber()) + 2;
+            case ('C'), ('D') -> ans = (ROWS - reservation.getRowNumber()) + 3;
         }
+        //TODO make them exit in row order
         return ans;
     }
 
