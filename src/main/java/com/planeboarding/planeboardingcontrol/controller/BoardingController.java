@@ -47,7 +47,7 @@ public class BoardingController {
             manager.readDataFromFile(path);
             passengerListTA.setText(manager.showPassengerList());
         } catch (IncorrectFormatException | IOException e) {
-            e.printStackTrace();
+            e.getStackTrace();
             MainApplication.showAlert("Error adding passenger", "Text file is not in the correct format", Alert.AlertType.ERROR);
         }
 
