@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.planeboarding.planeboardingcontrol.controller.BoardingController">
+    <Label fx:id="airlineNameLbl" text="Airline X" />
+    <Button fx:id="loadPassengersBtn" onAction="#onLoadPassengers">Load Passengers</Button>
+    <HBox alignment="CENTER">
+        <VBox>
+            <Label fx:id="passengerListLbl" text="Passenger List" />
+            <TextField fx:id="passengerIdField"/>
+            <Button fx:id="searchPassengerBtn" text="Register Entrance" onAction="#onAddPassengerClick"/>
+            <TextArea fx:id="passengerListTA" text="The passenger list will appear here" />
+        </VBox>
+        <VBox>
+            <Label fx:id="entryQueueLbl" text="Entry Queue" />
+            <TextArea fx:id="entryQueueTA" text="The entry queue will appear here" />
+        </VBox>
+        <VBox>
+            <Label fx:id="exitQueueLbl" text="Exit Queue" />
+            <TextArea fx:id="exitQueueTA" text="The exit queue will appear here" />
+        </VBox>
+    </HBox>
+</VBox>

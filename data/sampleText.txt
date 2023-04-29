@@ -1,11 +1,3 @@
-DFTWRD | Cristian2 | 4 | B | True | False | False | False | True
-DFFQAS | Cristian3 | 4 | A | True | True | True | True | True
-SDQWAS | Cristian1 | 4 | C | True | False | True | False | True
-AASQWE | Pedro23 | 3 | B | True | False | False | False | True
-AASQQQ | Pedro1 | 3 | D | True | False | False | False | True
-AASQWF | Pedro23 | 3 | E | True | False | False | False | True
-SDERFS | Mario1 | 1 | C | False | False | False | False | True
-SERDSE | Oscar1 | 5 | D | False | True | False | False | False
-ASDQQW | Oscar2 | 5 | E | False | True | True | False | True
-ASDQQX | Oscar3 | 5 | F | False | True | True | False | True
-HHADDE | Pedro4 | 3 | A | True | False | True | True | True
+DFTWRD | Cristian Botina | 4 | B | True | False | False | False | True
+SDERFS | Mario Martinez | 1 | C | False | False | False | False | True
+SERDSE | Oscar Gomez | 5 | D | False | True | False | False | False
