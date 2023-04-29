@@ -10,11 +10,14 @@ import java.util.Collections;
 public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue<K, V> {
     private final ArrayList<PQNode<K, V>> array;
 
+    private int heapsize;
+
     /**
      * Creates an empty priority queue
      */
     public PriorityQueue() {
         this.array = new ArrayList<>();
+        this.heapsize = 0;
     }
 
     /**
@@ -27,11 +30,11 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
         int r = right(i);
         int largest = i;
 
-        if (l < array.size() && isBigger(array.get(l).getKey(), array.get(largest).getKey())) {
+        if (l <= heapsize && isBigger(array.get(l).getKey(), array.get(largest).getKey())) {
             largest = l;
         }
 
-        if (r < array.size() && isBigger(array.get(r).getKey(), array.get(largest).getKey())) {
+        if (r <= heapsize && isBigger(array.get(r).getKey(), array.get(largest).getKey())) {
             largest = r;
         }
 
@@ -59,15 +62,13 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
      */
     @Override
     public V heapExtractMax() throws HeapUnderFlowException {
-        if (array.size() < 1) {
+        if (heapsize < 1) {
             throw new HeapUnderFlowException("PriorityQueue underflow");
         }
-        PQNode<K, V> max = array.remove(0);
-        if (array.size() == 2) {
-            maxHeapify(0);
-        } else {
-            maxHeapify(2);
-        }
+        PQNode<K, V> max = array.get(0);
+        array.set(0, array.get(heapsize - 1));
+        heapsize--;
+        maxHeapify(0);
         return max.getValue();
     }
 
@@ -84,6 +85,8 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
             throw new KeyIsSmallerException("The given key is smaller than the actual key");
         }
 
+        array.get(i).setKey(key);
+
         while (i > 0 && isBigger(array.get(i).getKey(), array.get(i / 2).getKey())) {
             Collections.swap(array, i, i / 2);
             i = i / 2;
@@ -99,8 +102,9 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
     @Override
     public void maxHeapInsert(K key, V element) throws KeyIsSmallerException {
         PQNode<K, V> node = new PQNode<>(key, element);
+        heapsize++;
         array.add(node);
-        heapIncreaseKey(array.size() - 1, key);
+        heapIncreaseKey(heapsize - 1, key);
     }
 
     /**
