@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
-
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.planeboarding.planeboardingcontrol.controller.MainController">
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.planeboarding.planeboardingcontrol.controller.MainController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="airlineNameLbl" text="Airline X"/>
-    <Label fx:id="airlineDescriptionLbl" text="Welcome to passenger manager."/>
-    <Button fx:id="openBoardingBtn" text="Open New Plane Boarding" onAction="#onOpenBoarding"/>
+    <Label fx:id="airlineNameLbl" text="Airline X">
+      <font>
+         <Font name="System Bold" size="18.0" />
+      </font></Label>
+    <Label fx:id="airlineDescriptionLbl" text="'Your comfort is our priority'" />
+    <Button fx:id="openBoardingBtn" onAction="#onOpenBoarding" text="Open New Plane Boarding" />
 </VBox>
