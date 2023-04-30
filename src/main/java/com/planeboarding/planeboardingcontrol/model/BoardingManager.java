@@ -2,10 +2,7 @@ package com.planeboarding.planeboardingcontrol.model;
 
 import com.planeboarding.planeboardingcontrol.dataStructures.HashTable;
 import com.planeboarding.planeboardingcontrol.dataStructures.PriorityQueue;
-import com.planeboarding.planeboardingcontrol.exception.DuplicatedKeyException;
-import com.planeboarding.planeboardingcontrol.exception.IncorrectFormatException;
-import com.planeboarding.planeboardingcontrol.exception.KeyIsSmallerException;
-import com.planeboarding.planeboardingcontrol.exception.ReservationNotFoundException;
+import com.planeboarding.planeboardingcontrol.exception.*;
 
 import java.io.*;
 import java.util.Random;
@@ -150,11 +147,13 @@ public class BoardingManager {
      * @throws ReservationNotFoundException when the reservation is not in the hash table
      * @throws KeyIsSmallerException when there is a problem with the key in the priority queue
      */
-    public Reservation registerReservation(String id) throws ReservationNotFoundException, KeyIsSmallerException {
+    public Reservation registerReservation(String id) throws ReservationNotFoundException, KeyIsSmallerException, RepeatedPassengerException {
         Reservation reservation = searchReservationById(id);
         if(reservation == null) throw new ReservationNotFoundException("Reservation not found");
+        if(reservation.isRegistered()) throw new RepeatedPassengerException("Passenger is already registered");
         entryOrder.maxHeapInsert(calculateEntryPriority(reservation), reservation);
         exitOrder.maxHeapInsert(calculateExitPriority(reservation), reservation);
+        reservation.setRegistered(true);
         return reservation;
     }
 

@@ -92,6 +92,8 @@ public class BoardingController {
             MainApplication.showAlert("Error registering passenger", "Reservation was not found, check the id and try again", Alert.AlertType.ERROR);
         } catch (KeyIsSmallerException e) {
             MainApplication.showAlert("Error registering passenger", "Passenger could not be added to the list", Alert.AlertType.ERROR);
+        } catch (RepeatedPassengerException e) {
+            MainApplication.showAlert("Error registering passenger", "Passenger is already added to the list", Alert.AlertType.ERROR);
         }
     }
 }

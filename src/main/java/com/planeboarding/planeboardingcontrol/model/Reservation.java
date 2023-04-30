@@ -6,6 +6,7 @@ public class Reservation {
     private boolean[] priority;
     private int rowNumber;
     private char columnChar;
+    private boolean registered;
 
     public Reservation(String id, String passengerName, boolean[] priority, int rowNumber, char columnChar) {
         this.id = id;
@@ -13,6 +14,7 @@ public class Reservation {
         this.priority = priority;
         this.rowNumber = rowNumber;
         this.columnChar = columnChar;
+        this.registered = false;
     }
 
     public String getId() {
@@ -53,6 +55,14 @@ public class Reservation {
 
     public void setColumnChar(char columnChar) {
         this.columnChar = columnChar;
+    }
+
+    public boolean isRegistered() {
+        return registered;
+    }
+
+    public void setRegistered(boolean registered) {
+        this.registered = registered;
     }
 
     /** this function shows a readable description of the current reservation
