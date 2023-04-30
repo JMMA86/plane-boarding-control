@@ -26,6 +26,7 @@ public class MainApplication extends Application {
             Scene scene = new Scene(fxmlLoader.load(), width, height);
             stage.setTitle("Plane Boarding Control");
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -24,6 +24,6 @@ public class MainController {
     void onOpenBoarding(ActionEvent actionEvent) {
         Stage stage = (Stage) openBoardingBtn.getScene().getWindow();
         stage.close();
-        MainApplication.renderView("boarding-view.fxml", 1280, 720);
+        MainApplication.renderView("boarding-view.fxml", 1200, 300);
     }
 }
