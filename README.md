@@ -22,6 +22,10 @@ To run this project, follow these steps:
 
 1. Clone the repository on your computer.
 2. Open the repository in an IDE. We used Intellij during the project's development, so we recommend using it.
-3. Execute the Mainapplication java file to start the application.
+3. Execute the MainApplication.java file to start the application.
 
 PD: The program also offers sample passenger data files in a folder called “data” inside the project to simulate the application's functionality.
+
+### Annotations
+
+The system is designed to store passengers in an aircraft with 30 rows, 6 seats each. The number of rows destined to first class and those that are not, will be defined by the file that contains the data entry. That means that if the furthest first class passenger is placed in the 6 row, it will be assumed that from row 30 to 7 will be the section for those who are not in first class. Therefore, also it will be assumed that data is already validated and satisfies all conditions.
