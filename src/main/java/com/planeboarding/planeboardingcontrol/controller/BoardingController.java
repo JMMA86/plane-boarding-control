@@ -29,8 +29,6 @@ public class BoardingController {
     public Button searchPassengerBtn;
     @FXML
     private Button loadPassengersBtn;
-    @FXML
-    private Label airlineNameLbl;
 
     BoardingManager manager = new BoardingManager();
 
@@ -55,7 +53,7 @@ public class BoardingController {
             exitQueueTA.setText("The exit queue will appear here");
         } catch (IncorrectFormatException | IOException e) {
             e.getStackTrace();
-            MainApplication.showAlert("Error adding passenger", "Text file is not in the correct format", Alert.AlertType.ERROR);
+            MainApplication.showAlert("Error loading passenger list", "Text file is not in the correct format", Alert.AlertType.ERROR);
         }
 
     }
@@ -75,12 +73,12 @@ public class BoardingController {
                 int lastBracketIndex = text.lastIndexOf(")");
                 entryQueueTA.setText("1. " + text.substring(firstBracketIndex, lastBracketIndex + 1));
             } else {
-                String textToAdd = "";
+                StringBuilder textToAdd = new StringBuilder();
                 for (int i = 0; i < manager.getEntryOrder().getArray().toArray().length; i++) {
                     String text = manager.getEntryOrder().getArray().get(i).toString();
                     int firstBracketIndex = text.indexOf("[");
                     int lastBracketIndex = text.lastIndexOf(")");
-                    textToAdd += "\n" + (i+1) + ". " + text.substring(firstBracketIndex, lastBracketIndex + 1);
+                    textToAdd.append("\n").append(i + 1).append(". ").append(text, firstBracketIndex, lastBracketIndex + 1);
                 }
                 entryQueueTA.setText(textToAdd.substring(1));
             }
@@ -90,12 +88,12 @@ public class BoardingController {
                 int lastBracketIndex = text.lastIndexOf(")");
                 exitQueueTA.setText(text.substring(firstBracketIndex, lastBracketIndex + 1));
             } else {
-                String textToAdd = "";
+                StringBuilder textToAdd = new StringBuilder();
                 for (int i = 0; i < manager.getExitOrder().getArray().toArray().length; i++) {
                     String text = manager.getExitOrder().getArray().get(i).toString();
                     int firstBracketIndex = text.indexOf("[");
                     int lastBracketIndex = text.lastIndexOf(")");
-                    textToAdd += "\n" + (i+1) + ". " + text.substring(firstBracketIndex, lastBracketIndex + 1);
+                    textToAdd.append("\n").append(i + 1).append(". ").append(text, firstBracketIndex, lastBracketIndex + 1);
                 }
                 exitQueueTA.setText(textToAdd.substring(1));
             }
