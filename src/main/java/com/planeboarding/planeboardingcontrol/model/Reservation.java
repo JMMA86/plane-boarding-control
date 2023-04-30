@@ -69,9 +69,10 @@ public class Reservation {
      * @return id The String representation of the reservation
      */
     public String showReservationInfo() {
-        String id = String.format("%nReservation: %s%n - name: %s%n - seat: %d%c", this.id, this.passengerName, this.rowNumber, this.columnChar);
+        String id = String.format("%nReservation: %s%n - Name: %s%n - Seat: %d%c", this.id, this.passengerName, this.rowNumber, this.columnChar);
         for(int i=0; i<priority.length; i++) {
-            id += String.format("%n - %s: %s", PriorityCriteria.values()[i].toString().toLowerCase().replaceAll("_", " "), ( priority[i] ? "yes" : "no") );
+            String priorityCriteria = PriorityCriteria.values()[i].toString();
+            id += String.format("%n - %s: %s", priorityCriteria.substring(0,1).toUpperCase() + priorityCriteria.substring(1).toLowerCase().replaceAll("_", " "), ( priority[i] ? "Yes" : "No") );
         }
         return id;
     }
