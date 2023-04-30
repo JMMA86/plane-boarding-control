@@ -22,6 +22,6 @@ To run this project, follow these steps:
 
 1. Clone the repository on your computer.
 2. Open the repository in an IDE. We used Intellij during the project's development, so we recommend using it.
-3. Execute the Mainapplication java file to start the application.
+3. Execute the Main Application java file to start the application.
 
 PD: The program also offers sample passenger data files in a folder called “data” inside the project to simulate the application's functionality.
