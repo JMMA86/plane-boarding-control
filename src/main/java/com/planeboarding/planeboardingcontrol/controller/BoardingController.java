@@ -3,7 +3,6 @@ package com.planeboarding.planeboardingcontrol.controller;
 import com.planeboarding.planeboardingcontrol.MainApplication;
 import com.planeboarding.planeboardingcontrol.exception.*;
 import com.planeboarding.planeboardingcontrol.model.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
@@ -14,22 +13,28 @@ import java.io.*;
 public class BoardingController {
     @FXML
     public Label passengerListLbl;
+    @FXML
     public TextArea passengerListTA;
-    public Button addPassengerBtn;
+    @FXML
     public Label entryQueueLbl;
+    @FXML
     public TextArea entryQueueTA;
+    @FXML
     public Label exitQueueLbl;
+    @FXML
     public TextArea exitQueueTA;
+    @FXML
     public TextField passengerIdField;
+    @FXML
     public Button searchPassengerBtn;
     @FXML
     private Button loadPassengersBtn;
-
     @FXML
     private Label airlineNameLbl;
 
     BoardingManager manager = new BoardingManager();
 
+    int registeredCount = 0;
 
     FileChooser fileChooser = new FileChooser();
 
@@ -46,6 +51,8 @@ public class BoardingController {
         try {
             manager.readDataFromFile(path);
             passengerListTA.setText(manager.showPassengerList().substring(1));
+            entryQueueTA.setText("The entry queue will appear here");
+            exitQueueTA.setText("The exit queue will appear here");
         } catch (IncorrectFormatException | IOException e) {
             e.getStackTrace();
             MainApplication.showAlert("Error adding passenger", "Text file is not in the correct format", Alert.AlertType.ERROR);
@@ -53,8 +60,12 @@ public class BoardingController {
 
     }
 
-    public void onAddPassengerClick(ActionEvent actionEvent) {
+    public void onAddPassengerClick() {
         String targetId = passengerIdField.getText().toUpperCase();
+        if (registeredCount == 30) {
+            MainApplication.showAlert("Error registering passenger", "Registered passengers limit reached (30)", Alert.AlertType.ERROR);
+            return;
+        }
         try {
             Reservation foundReservation = manager.registerReservation(targetId);
             MainApplication.showAlert("Passenger registered successfully", foundReservation.showReservationInfo(), Alert.AlertType.INFORMATION);
@@ -87,7 +98,8 @@ public class BoardingController {
                     textToAdd += "\n" + (i+1) + ". " + text.substring(firstBracketIndex, lastBracketIndex + 1);
                 }
                 exitQueueTA.setText(textToAdd.substring(1));
-            };
+            }
+            registeredCount++;
         } catch (ReservationNotFoundException e) {
             MainApplication.showAlert("Error registering passenger", "Reservation was not found, check the id and try again", Alert.AlertType.ERROR);
         } catch (KeyIsSmallerException e) {
