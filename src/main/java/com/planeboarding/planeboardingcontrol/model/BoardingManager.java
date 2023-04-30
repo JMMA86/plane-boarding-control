@@ -1,13 +1,14 @@
 package com.planeboarding.planeboardingcontrol.model;
 
-import com.planeboarding.planeboardingcontrol.MainApplication;
-import com.planeboarding.planeboardingcontrol.controller.BoardingController;
+import com.planeboarding.planeboardingcontrol.dataStructures.HashTable;
+import com.planeboarding.planeboardingcontrol.dataStructures.PriorityQueue;
+import com.planeboarding.planeboardingcontrol.exception.DuplicatedKeyException;
+import com.planeboarding.planeboardingcontrol.exception.IncorrectFormatException;
+import com.planeboarding.planeboardingcontrol.exception.KeyIsSmallerException;
+import com.planeboarding.planeboardingcontrol.exception.ReservationNotFoundException;
 
 import java.io.*;
 import java.util.Random;
-
-import com.planeboarding.planeboardingcontrol.dataStructures.*;
-import com.planeboarding.planeboardingcontrol.exception.*;
 
 public class BoardingManager {
 
