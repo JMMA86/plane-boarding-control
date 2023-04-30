@@ -24,7 +24,7 @@ public class PriorityQueue<K extends Comparable<K>, V> implements IPriorityQueue
      *
      * This function organize the nodes in the heap taking the bigger keys as the roots
      */
-    private void maxHeapify(int i) {
+    public void maxHeapify(int i) {
         int l = left(i);
         int r = right(i);
         int largest = i;
