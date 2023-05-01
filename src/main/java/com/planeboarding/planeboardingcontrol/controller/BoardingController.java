@@ -60,7 +60,7 @@ public class BoardingController {
 
     public void onAddPassengerClick() {
         String targetId = passengerIdField.getText().toUpperCase();
-        if (registeredCount == 30) {
+        if (registeredCount == 180) {
             MainApplication.showAlert("Error registering passenger", "Registered passengers limit reached (30)", Alert.AlertType.ERROR);
             return;
         }
