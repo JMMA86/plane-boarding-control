@@ -88,37 +88,19 @@ public class BoardingManager {
      * reservation.
      *
      * @param reservation the reservation recently added to the queue
-     * @return The sum of all the trues in the boolean array calculated as 2 to the power
-     *         of the position of that element.
+     * @return The priority according to the level of priority of the reservation
      */
     private int calculateEntryPriority(Reservation reservation) {
         int ans = 0;
         if (reservation.getPriority()[0]) {
-            for (int i = reservation.getPriority().length - 1; i >= 0; i--) {
+            for (int i = reservation.getPriority().length - 1; i >= 1; i--) {
                 if (reservation.getPriority()[i]) {
-                    ans += Math.pow(2, i);
+                    ans += Math.pow(2, reservation.getPriority().length - i);
                 }
             }
-        } else {
-            ans = 1;
-        }
-        ans += calculateEntryRow(reservation);
-        return ans;
-    }
-
-    /**
-     * This function calculates the entry order for all the passengers according to its
-     * proximity to the end of the plane
-     *
-     * @param reservation The reservation to be added to the plane
-     * @return The priority according to the row of that belongs to the reservation
-     */
-    private int calculateEntryRow(Reservation reservation) {
-        int ans = 0;
-        switch (reservation.getColumnChar()) {
-            case ('A'), ('F') -> ans = reservation.getRowNumber() * (COLUMNS / 2) - 3;
-            case ('B'), ('E') -> ans = reservation.getRowNumber() * (COLUMNS / 2) - 2;
-            case ('C'), ('D') -> ans = reservation.getRowNumber() * (COLUMNS / 2) - 1;
+            ans += reservation.getRowNumber() * Math.pow(2, reservation.getPriority().length) + ROWS;
+        } else  {
+            ans += reservation.getRowNumber();
         }
         return ans;
     }
