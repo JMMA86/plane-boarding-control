@@ -93,7 +93,7 @@ public class BoardingManager {
      */
     private int calculateEntryPriority(Reservation reservation) {
         int ans = 0;
-        if (reservation.getPriority()[reservation.getPriority().length - 1]) {
+        if (reservation.getPriority()[0]) {
             for (int i = reservation.getPriority().length - 1; i >= 0; i--) {
                 if (reservation.getPriority()[i]) {
                     ans += Math.pow(2, i);
