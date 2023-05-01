@@ -5,21 +5,17 @@ import com.planeboarding.planeboardingcontrol.dataStructures.PriorityQueue;
 import com.planeboarding.planeboardingcontrol.exception.*;
 
 import java.io.*;
-import java.util.Random;
 
 public class BoardingManager {
-
-    private Random rnd;
     private static final int ROWS = 30;
     private static final int COLUMNS = 6;
-    private HashTable<String, Reservation> reservations;
+    private final HashTable<String, Reservation> reservations;
     private final PriorityQueue<Integer, Reservation> entryOrder;
     private final PriorityQueue<Integer, Reservation> exitOrder;
     public BoardingManager() {
         this.reservations = new HashTable<>();
         this.entryOrder = new PriorityQueue<>();
         this.exitOrder = new PriorityQueue<>();
-        this.rnd = new Random();
     }
 
     /**
@@ -148,9 +144,5 @@ public class BoardingManager {
 
     public PriorityQueue<Integer, Reservation> getEntryOrder() {
         return entryOrder;
-    }
-
-    public HashTable<String, Reservation> getReservations() {
-        return reservations;
     }
 }

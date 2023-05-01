@@ -49,13 +49,10 @@ public class BoardingController {
         try {
             manager.readDataFromFile(path);
             passengerListTA.setText(manager.showPassengerList().substring(1));
-            entryQueueTA.setText("The entry queue will appear here");
-            exitQueueTA.setText("The exit queue will appear here");
         } catch (IncorrectFormatException | IOException e) {
             e.getStackTrace();
             MainApplication.showAlert("Error loading passenger list", "Text file is not in the correct format", Alert.AlertType.ERROR);
         }
-
     }
 
     public void onAddPassengerClick() {
