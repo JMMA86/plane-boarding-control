@@ -11,7 +11,7 @@ The following repository contains the solution to Integrative Task for the cours
 ### Documentation
 
 This project comes with documentation in Google Docs, which can be found at the following link:
-https://docs.google.com/document/d/1AYOwD3-3vz3E_JVHIcsifiulKIdSEOT_pa8rNdGms/edit?usp=sharing.
+https://docs.google.com/document/d/1AYCwvD3-3vz3E_JVHlcsifIhJlKId5E0T_pa8rNdGms/edit?usp=sharing.
 
 ### Graphical User Interface
 
